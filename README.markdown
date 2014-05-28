@@ -4,11 +4,11 @@ CL-COROUTINE is a coroutine library for Common Lisp. It uses CL-CONT continuatio
 
 ## Example
 
-Coroutines can be defined using DEFCOROUTINE macro.
+Coroutines can be defined using `defcoroutine` macro.
 
-To use defined coroutines, first create a coroutine object with calling MAKE-COROUTINE function, then just FUNCALL to process it.
+To use defined coroutines, first create a coroutine object with calling `make-coroutine` function, then just `funcall` to process it.
 
-YIELD macro control back to the context which called the coroutine and the coroutine will resume processing at this point when it will be called again.
+`yield` macro control back to the context which called the coroutine and the coroutine will resume processing at this point when it will be called again.
 
     ;; define a coroutine using DEFCOROUTINE macro
     (defcoroutine example (whom)
@@ -27,27 +27,32 @@ YIELD macro control back to the context which called the coroutine and the corou
     => a coroutine object
 
     ;; funcall it
-    (funcall coroutine "Smith") => 1
+    (funcall coroutine "Smith")
     >> First greeting to: Smith
+    => 1
 
     ;; funcall again
-    (funcall coroutine "Johnson") => 2
+    (funcall coroutine "Johnson")
     >> Second greeting to: Johnson
+    => 2
 
     ;; funcall again and coexit
-    (funcall coroutine "Williams") => 3
+    (funcall coroutine "Williams")
     >> Third greeting to: Williams
+    => 3
 
     ;; funcall after coexit just returns no value
-    (funcall coroutine "Brown") => No value
+    (funcall coroutine "Brown")
+    => No value
 
     ;; you can also use WITH-COROUTINE macro to set up coroutines,
     ;; which provides calling coroutines without explicit FUNCALL
     (with-coroutine (example)
       (example "Smith")
-      (example "Johnson")) => 2
+      (example "Johnson"))
     >> First greeting to: Smith
     >> Second greeting to: Johnson
+    => 2
 
 
 ## Installation
@@ -61,17 +66,17 @@ Since CL-COROUTINE is just requesting its approval to Quicklisp, use Quicklisp's
 ## Restrictions
 
 CL-COROUTINE has some restrictions because of its dependency on CL-CONT library.
-* special forms CL-CONT library does not support with CALL/CC
-* coroutines with very long definition may need much compile time
+* special forms that CL-CONT library does not support with CALL/CC
+* coroutines with very long definition might need much time to compile
 
 
 ## API
 
 ### [macro]defcoroutine
 
-    DEFCOROUTINE coroutine-name args &body body => coroutine-name
+    DEFCOROUTINE coroutine-name arg &body body => coroutine-name
 
-Defines a new coroutine named `coroutine-name` that has atmost one argument as `args`. The definition of coroutine is stored in the property list of `coroutine-name`. Defined coroutines will be created using `make-coroutine` function.
+Defines a new coroutine named `coroutine-name` that has atmost one argument as `arg`. The definition of coroutine is stored in the property list of `coroutine-name` symbol. Defined coroutines will be created using `make-coroutine` function.
 
 ### [macro]yield
 
@@ -83,7 +88,7 @@ Yields control back to the context which called the coroutine, passing along any
 
     COEXIT [result] => |
 
-Returns control to the context which called the coroutine, passing along any multiple values that were passed to it. The difference from YIELD macro is that the coroutine will never resume processing at this point anymore. If the coroutine will be called again, it will just return no value.
+Returns control to the context which called the coroutine, passing along any multiple values that were passed to it. The difference from `yield` macro is that the coroutine will never resume processing at this point anymore. If the coroutine will be called again, it will just return no value.
 
 ### [function]make-coroutine
 
@@ -102,6 +107,11 @@ Creates and returns a coroutine corresponding to `coroutine-name`. The returned 
 
 * Masayuki Takagi (kamonama@gmail.com)
 
+
 ## Copyright
 
 Copyright (c) 2014 Masayuki Takagi (kamonama@gmail.com)
+
+## License
+
+Licensed under the LLGPL License.
