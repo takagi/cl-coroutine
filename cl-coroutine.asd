@@ -11,7 +11,7 @@
 (defsystem cl-coroutine
   :version "0.1"
   :author "Masayuki Takagi"
-  :license ""
+  :license "LLGPL"
   :depends-on (:cl-cont :alexandria)
   :components ((:module "src"
                 :components
@@ -29,4 +29,4 @@
                                :fill-pointer t)))
           (setf (fill-pointer seq) (read-sequence seq stream))
           seq)))
-  :in-order-to ((test-op (test-op cl-coroutine-test))))
+  :in-order-to ((test-op (load-op cl-coroutine-test))))

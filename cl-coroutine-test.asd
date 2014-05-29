@@ -10,15 +10,11 @@
 
 (defsystem cl-coroutine-test
   :author "Masayuki Takagi"
-  :license ""
+  :license "LLGPL"
   :depends-on (:cl-coroutine
                :cl-test-more)
   :components ((:module "t"
                 :components
                 ((:file "cl-coroutine"))))
 
-  :defsystem-depends-on (:cl-test-more)
-  :perform (test-op :after (op c)
-                    (funcall (intern #. (string :run-test-system) :cl-test-more)
-                             c)
-                    (asdf:clear-system c)))
+  :perform (load-op :after (op c) (asdf:clear-system c)))
