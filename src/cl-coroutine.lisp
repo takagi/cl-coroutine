@@ -32,7 +32,6 @@
              #'(lambda ()
                  (let (,cont)
                    #'(lambda (,arg)
-                       (declare (ignorable ,arg))
                        (if ,cont
                          (funcall ,cont ,arg)
                          (cl-cont:with-call/cc
