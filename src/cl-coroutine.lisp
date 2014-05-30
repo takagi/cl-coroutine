@@ -36,7 +36,7 @@
                          (funcall ,cont ,arg)
                          (cl-cont:with-call/cc
                            (macrolet ((yield (&optional result)
-                                        (let ((cc (gensym)))
+                                        (with-gensyms (cc)
                                           `(setf ,',arg
                                                  (cl-cont:let/cc ,cc
                                                    (setf ,',cont ,cc)
@@ -64,7 +64,7 @@
                          (funcall ,cont)
                          (cl-cont:with-call/cc
                            (macrolet ((yield (&optional result)
-                                        (let ((cc (gensym)))
+                                        (with-gensyms (cc)
                                           `(cl-cont:let/cc ,cc
                                              (setf ,',cont ,cc)
                                              ,result)))
