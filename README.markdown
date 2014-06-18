@@ -72,31 +72,31 @@ CL-COROUTINE has some restrictions because of its dependency on CL-CONT library.
 
 ## API
 
-### [macro]defcoroutine
+### [Macro] defcoroutine
 
     DEFCOROUTINE coroutine-name arg &body body => coroutine-name
 
 Defines a new coroutine named `coroutine-name` that has atmost one argument as `arg`. The definition of coroutine is stored in the property list of `coroutine-name` symbol. Defined coroutines will be created using `make-coroutine` function.
 
-### [macro]yield
+### [Macro] yield
 
     YIELD [result] => |
 
 Yields control back to the context which called the coroutine, passing along any multiple values that were passed to it. The coroutine will resume processing at this point when it will be called again. Any arguments passed to the next calling will be set to the coroutine's corresponding parameters implicitly.
 
-### [macro]coexit
+### [Macro] coexit
 
     COEXIT [result] => |
 
 Returns control to the context which called the coroutine, passing along any multiple values that were passed to it. The difference from `yield` macro is that the coroutine will never resume processing at this point anymore. If the coroutine will be called again, it will just return no value.
 
-### [function]make-coroutine
+### [Function] make-coroutine
 
     MAKE-COROUTINE coroutine-name => coroutine
 
 Creates and returns a coroutine corresponding to `coroutine-name`. The returned coroutine can be called with `funcall` or `apply` functions.
 
-### [macro]with-coroutine
+### [Macro] with-coroutine
 
     WITH-COROUTINE (coroutine-name) &body body => results
 
