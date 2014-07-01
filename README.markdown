@@ -57,10 +57,9 @@ To use defined coroutines, first create a coroutine object with calling `make-co
 
 ## Installation
 
-Since CL-COROUTINE is just requesting its approval to Quicklisp, use Quicklisp's local-projects feature until it will be approved.
+You can install `cl-coroutine` via Quicklisp:
 
-    $ cd quicklisp/local-projects
-    $ git clone git://github.com/takagi/cl-coroutine.git
+    (ql:quicklisp :cl-coroutine)
 
 
 ## Restrictions
