@@ -59,7 +59,7 @@ To use defined coroutines, first create a coroutine object with calling `make-co
 
 You can install `cl-coroutine` via Quicklisp:
 
-    (ql:quicklisp :cl-coroutine)
+    (ql:quickload :cl-coroutine)
 
 
 ## Restrictions
